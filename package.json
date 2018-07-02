@@ -28,6 +28,11 @@
   },
   "jest": {
     "preset": "react-native",
+    "globals": {
+      "ts-jest": {
+        "useBabelrc": true
+      }
+    },
     "transformIgnorePatterns": [
       "node_modules/(?!(react-native|my-project|react-navigation|react-native-safe-area-view)/)"
     ],

@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation';
-import SubmitComplaint from '../screens/SubmitComplaint'
+import SubmitComplaint from 'Screens/SubmitComplaint'
 
 const StackRouter = StackNavigator({
         Submit: { screen: SubmitComplaint, header: null },
