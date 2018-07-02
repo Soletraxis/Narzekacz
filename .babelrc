@@ -1,3 +1,20 @@
 {
-  "presets": ["react-native"]
+  "presets": ["react-native"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./app"
+        ],
+        "extensions": [".js", ".ios.js", ".android.js", ".ts"],
+        "cwd": "babelrc",
+        "alias": {
+          "Components": "./app/components",
+          "Screens": "./app/screens",
+          "Config": "./app/config"
+        }
+      }
+    ]
+  ]
 }
