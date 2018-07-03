@@ -1,64 +1,36 @@
 import React from 'react';
 import { Component } from 'react';
 import { View, Image } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+import ComplaintPattern from '../../classes/ComplaintPattern';
 
-export default class ComplaintForm extends Component {
-  constructor(props) {
+export default class ComplaintForm extends Component <{}, { stateTest: '' }> {
+  constructor(props :any) {
     super(props);
 
-    this.state = {
-      avatar: ''
-    }
-
   }
 
-  componentWillMount() {
-      this.getImage();
+  async componentWillMount() {
+      let test = new ComplaintPattern();
+      try{
+          let data = await test.getImage;
+          data = { ...data, width: 100, height: 100};
+
+
+          this.setState({
+              stateTest: data
+          });
+      } catch (e) {
+          console.log(e);
+      }
   }
 
 
-  getImage = () => {
-      let options = {
-          title: 'Select Avatar',
-          customButtons: [
-              {name: 'fb', title: 'Choose Photo from Facebook'},
-          ],
-          storageOptions: {
-              skipBackup: true,
-              path: 'images'
-          }
-      };
 
-      ImagePicker.showImagePicker(options, (response) => {
-          console.log('Response = ', response);
-
-          if (response.didCancel) {
-              console.log('User cancelled image picker');
-          }
-          else if (response.error) {
-              console.log('ImagePicker Error: ', response.error);
-          }
-          else if (response.customButton) {
-              console.log('User tapped custom button: ', response.customButton);
-          }
-          else {
-              let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-              // You can also display the image using data:
-              // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-              this.setState({
-                  avatar: source
-              });
-          }
-      });
-  }
 
   render() {
     return (
         <View>
-        { this.state.avatar !== ''  && <Image source={this.state.avatar} style={{ flex: 1, position: 'absolute' }}/> }
+            { this.state.stateTest !== ''  && <Image source={this.state.stateTest}/>}
         </View>
     );
   }
