@@ -1,8 +1,10 @@
 import ImagePicker from 'react-native-image-picker';
+import questions from 'Data/InterviewForm'
 //import { NativeModules } from 'react-native'
 
 //const LocalImageManager = require('NativeModules').LocalImageManager;
 export default class ComplaintPattern {
+    interview = [];
 
     getImage = new Promise((resolve :any, reject :any) => {
         let options = {
@@ -36,5 +38,11 @@ export default class ComplaintPattern {
             }
         });
     });
+
+    debil = (form) => {
+        form.map((question :{}) => {
+            this.interview.push( question );
+        })
+    }
 
 }
