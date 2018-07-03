@@ -1,5 +1,7 @@
 import ImagePicker from 'react-native-image-picker';
+//import { NativeModules } from 'react-native'
 
+//const LocalImageManager = require('NativeModules').LocalImageManager;
 export default class ComplaintPattern {
 
     getImage = new Promise((resolve :any, reject :any) => {
@@ -27,7 +29,10 @@ export default class ComplaintPattern {
                 // You can also display the image using data:
                 //let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
+                //LocalImageManager.download({...source, filename: 'xd.png'}, (results :any) => console.log(results));
+
                 resolve(source);
+
             }
         });
     });
