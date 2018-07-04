@@ -14,7 +14,8 @@
           "Screens": "./app/screens",
           "Config": "./app/config",
           "Classes": "./app/classes",
-          "Data": "./app/data"
+          "Data": "./app/data",
+          "Services": "./app/services"
         }
       }
     ]

@@ -2,7 +2,8 @@ import React from 'react';
 import { Component } from 'react';
 import {View, Image, FlatList, Text, TextInput, Button } from 'react-native';
 import ComplaintPattern from 'Classes/ComplaintPattern';
-import questions from 'Data/InterviewForm'
+import questions from 'Data/InterviewForm';
+import saveData from 'Services/SaveData';
 
 export default class ComplaintForm extends Component <{}, {  }> {
     state = {
@@ -37,6 +38,11 @@ export default class ComplaintForm extends Component <{}, {  }> {
       }
   }
 
+  onSubmitPress = () => {
+        const data = {...this.state.stateTest, ...this.state.form}
+        saveData(data);
+  }
+
 
 
 
@@ -59,7 +65,7 @@ export default class ComplaintForm extends Component <{}, {  }> {
                 data={this.state.form}
                 renderItem={({item}) => this.renderQuestionary(item)}
             />
-            <Button title={'dupa'} onPress={() => console.log(this.state.form)}/>
+            <Button title={'dupa'} onPress={() => this.onSubmitPress()}/>
         </View>
     );
   }

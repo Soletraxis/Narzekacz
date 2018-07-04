@@ -1,8 +1,6 @@
 import ImagePicker from 'react-native-image-picker';
 import questions from 'Data/InterviewForm'
-//import { NativeModules } from 'react-native'
 
-//const LocalImageManager = require('NativeModules').LocalImageManager;
 export default class ComplaintPattern {
     interview = [];
 
