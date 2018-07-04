@@ -1,12 +1,11 @@
 import React from 'react';
 import { Component } from 'react';
-import {View, Image, FlatList, Text, TextInput, Button } from 'react-native';
+import {View, Image, FlatList, Text, TextInput, Button, Alert} from 'react-native';
 import ComplaintPattern from 'Classes/ComplaintPattern';
 import questions from 'Data/InterviewForm';
 import saveData from 'Services/SaveData';
-import readData from 'Services/ReadData';
 
-export default class ComplaintForm extends Component <{}, {  }> {
+export default class ComplaintForm extends Component <{navigation :object}, {  }> {
     state = {
         stateTest: {uri: ''},
         form: []
@@ -53,7 +52,15 @@ export default class ComplaintForm extends Component <{}, {  }> {
         const key :string = this.generateKey();
         const data :{} = {...this.state.stateTest, ...this.state.form, key};
         saveData(data);
-        readData()
+        return(
+            Alert.alert(
+                'Pomyślnie zapisano zgłoszenie',
+                '',
+                [
+                    {text: 'OK', onPress: () => this.props.navigation.navigate('List', data)}
+                ]
+            )
+        )
   }
 
 

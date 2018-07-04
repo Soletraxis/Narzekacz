@@ -1,21 +1,36 @@
 import React from 'react';
 import {Component} from 'react';
-import {Button, FlatList, Image, View, Text} from 'react-native';
+import {Button, FlatList, View } from 'react-native';
 import readData from "Services/ReadData";
 import ListOfQuestionaries from "./ListOfQuestionaries";
 
-export default class ListOfComplaints extends Component {
+export default class ListOfComplaints extends Component <{navigation :object}, {data :Array<object>}> {
     state = {
-        data: []
+        data: [],
+        reload: false
     }
 
     async componentWillMount() {
+        await this.didMount();
+    }
+
+    componentWillReceiveProps(){
         this.setState({
-            data: await readData()
+            reload: true
+        })
+    }
+
+    async didMount() {
+        this.setState({
+            data: await readData(),
+            reload: false
         })
     }
 
     render() {
+        if(this.state.reload) {
+            this.didMount();
+        }
         return (
             <View>
                 <Button title={'wqe'} onPress={() => this.props.navigation.navigate('Submit')}/>
