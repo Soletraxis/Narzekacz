@@ -4,6 +4,7 @@ import {View, Image, FlatList, Text, TextInput, Button } from 'react-native';
 import ComplaintPattern from 'Classes/ComplaintPattern';
 import questions from 'Data/InterviewForm';
 import saveData from 'Services/SaveData';
+import readData from 'Services/ReadData';
 
 export default class ComplaintForm extends Component <{}, {  }> {
     state = {
@@ -38,9 +39,22 @@ export default class ComplaintForm extends Component <{}, {  }> {
       }
   }
 
+  generateKey = () => {
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const day = date.getDate();
+      const hour = date.getHours();
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds();
+      return `${year}-${month}-${day}-${hour}-${minutes}-${seconds}`
+  }
+
   onSubmitPress = () => {
-        const data = {...this.state.stateTest, ...this.state.form}
+        const key :string = this.generateKey();
+        const data :{} = {...this.state.stateTest, ...this.state.form, key};
         saveData(data);
+        readData()
   }
 
 

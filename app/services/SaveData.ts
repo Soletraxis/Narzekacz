@@ -2,17 +2,11 @@ import {AsyncStorage} from 'react-native';
 
 const saveFile = async (data :any) => {
     try{
-        const xd :string = JSON.stringify(data);
-        await AsyncStorage.setItem('@MySuperStore:key', xd);
+        const stringifiedData :string = JSON.stringify(data);
+        await AsyncStorage.setItem(data.key, stringifiedData);
         console.log('working')
     } catch(error){
         console.log(error)
-    }
-    try{
-        await AsyncStorage.getItem('@MySuperStore:key').then((response) => console.log(JSON.parse(response)))
-    }
-    catch (e) {
-        console.log(e)
     }
 }
 
