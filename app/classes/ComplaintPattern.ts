@@ -29,8 +29,6 @@ export default class ComplaintPattern {
                 // You can also display the image using data:
                 //let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
-                //LocalImageManager.download({...source, filename: 'xd.png'}, (results :any) => console.log(results));
-
                 resolve(source);
 
             }
