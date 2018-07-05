@@ -4,6 +4,7 @@ import {View, Image, FlatList, Text, TextInput, Button, Alert} from 'react-nativ
 import ComplaintPattern from 'Classes/ComplaintPattern';
 import questions from 'Data/InterviewForm';
 import saveData from 'Services/SaveData';
+import sendData from "../../services/sendData";
 
 export default class ComplaintForm extends Component <{navigation :object}, {  }> {
     state = {
@@ -52,6 +53,8 @@ export default class ComplaintForm extends Component <{navigation :object}, {  }
         const key :string = this.generateKey();
         const data :{} = {...this.state.stateTest, ...this.state.form, key};
         saveData(data);
+        //console.log(data);
+        sendData(data);
         return(
             Alert.alert(
                 'Pomyślnie zapisano zgłoszenie',
