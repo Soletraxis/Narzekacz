@@ -1,8 +1,10 @@
 import { StackNavigator } from 'react-navigation';
-import SubmitComplaint from 'Screens/SubmitComplaint'
+import ComplaintForm from 'Screens/ComplaintForm/ComplaintForm'
+import ListOfComplaints from 'Screens/ListOfComplaints/ListOfComplaints';
 
 const StackRouter = StackNavigator({
-        Submit: { screen: SubmitComplaint, header: null },
+        List: { screen: ListOfComplaints, header: null},
+        Submit: { screen: ComplaintForm, header: null },
     },
     { headerMode: 'none' },
 )

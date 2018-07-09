@@ -12,7 +12,10 @@
         "alias": {
           "Components": "./app/components",
           "Screens": "./app/screens",
-          "Config": "./app/config"
+          "Config": "./app/config",
+          "Classes": "./app/classes",
+          "Data": "./app/data",
+          "Services": "./app/services"
         }
       }
     ]
