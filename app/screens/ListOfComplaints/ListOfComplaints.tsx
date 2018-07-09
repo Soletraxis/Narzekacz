@@ -3,6 +3,7 @@ import {Component} from 'react';
 import {Button, FlatList, View } from 'react-native';
 import readData from "Services/ReadData";
 import ListOfQuestionaries from "./ListOfQuestionaries";
+import styles from "./styles";
 
 export default class ListOfComplaints extends Component <{navigation :object}, {data :Array<object>}> {
     state = {
@@ -32,8 +33,8 @@ export default class ListOfComplaints extends Component <{navigation :object}, {
             this.didMount();
         }
         return (
-            <View>
-                <Button title={'wqe'} onPress={() => this.props.navigation.navigate('Submit')}/>
+            <View style={styles.container}>
+                <Button title={'Nowe zgłoszenie'} onPress={() => this.props.navigation.navigate('Submit')}/>
                 { this.state.data !== [] &&
                     <FlatList
                         data={this.state.data}

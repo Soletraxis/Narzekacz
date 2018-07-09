@@ -85,13 +85,13 @@ export default class ComplaintForm extends Component <{navigation :object}, {  }
   render() {
     return (
         <View>
-            <Button title={'przejdz'} onPress={() => this.props.navigation.navigate('List')}/>
+            <Button title={'Przejdz do listy zgłoszeń'} onPress={() => this.props.navigation.navigate('List')}/>
             { this.state.stateTest !== {uri: ''}  && <Image source={this.state.stateTest}/>}
             <FlatList
                 data={this.state.form}
                 renderItem={({item}) => this.renderQuestionary(item)}
             />
-            <Button title={'dupa'} onPress={() => this.onSubmitPress()}/>
+            <Button title={'Wyślij'} onPress={() => this.onSubmitPress()}/>
         </View>
     );
   }
