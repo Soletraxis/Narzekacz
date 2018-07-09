@@ -3,10 +3,13 @@ import initializeFirebase from "./InitiateFirebase";
 
 const isValid = async () => {
     await initializeFirebase();
+    let isValidate = false;
     const validation = firebase.database().ref('/onTurn');
-    validation.once('value').then((res) =>
+    await validation.once('value').then((res) =>
         {
-            return (res.val());
+            isValidate = res.val();
         }).catch((e) => console.log(e))
+    return isValidate;
+
 }
 export default isValid;
