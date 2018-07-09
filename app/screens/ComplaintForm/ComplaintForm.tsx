@@ -82,8 +82,8 @@ export default class ComplaintForm extends Component <{navigation :object}, {  }
     return (
         <ScrollView>
             <Button
-                title={'Przejdz do listy zgłoszeń'}
-                onPress={() => this.props.navigation.navigate('List')}
+                title={'Wróć do menu'}
+                onPress={() => this.props.navigation.navigate('Menu')}
             />
             <View style={styles.image}>
                 { this.state.stateTest !== {uri: ''}  && <Image source={this.state.stateTest}/>}

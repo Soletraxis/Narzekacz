@@ -34,7 +34,7 @@ export default class ListOfComplaints extends Component <{navigation :object}, {
         }
         return (
             <View style={styles.container}>
-                <Button title={'Nowe zgłoszenie'} onPress={() => this.props.navigation.navigate('Submit')}/>
+                <Button title={'Wróć do menu'} onPress={() => this.props.navigation.navigate('Menu')}/>
                 { this.state.data !== [] &&
                     <FlatList
                         data={this.state.data}
