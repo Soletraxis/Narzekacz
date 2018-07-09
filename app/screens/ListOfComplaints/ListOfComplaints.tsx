@@ -1,11 +1,11 @@
 import React from 'react';
 import {Component} from 'react';
 import {Button, FlatList, View } from 'react-native';
-import readData from "Services/ReadData";
+import readData from 'Services/ReadData';
 import ListOfQuestionaries from "./ListOfQuestionaries";
 import styles from "./styles";
 
-export default class ListOfComplaints extends Component <{navigation :object}, {data :Array<object>}> {
+export default class ListOfComplaints extends Component <{navigation :object}, {data :Array<object>, reload :boolean}> {
     state = {
         data: [],
         reload: false
