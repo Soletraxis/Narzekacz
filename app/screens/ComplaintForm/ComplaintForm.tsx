@@ -1,11 +1,12 @@
 import React from 'react';
 import { Component } from 'react';
-import {View, Image, FlatList, Text, TextInput, Button, Alert} from 'react-native';
+import {View, Image, FlatList, Text, TextInput, Button, Alert, ScrollView} from 'react-native';
 import ComplaintPattern from 'Classes/ComplaintPattern';
 import questions from 'Data/InterviewForm';
 import saveData from 'Services/SaveData';
 import sendData from "../../services/sendData";
 import uploadFile from "../../services/UploadImage";
+import styles from "./styles";
 
 export default class ComplaintForm extends Component <{navigation :object}, {  }> {
     state = {
@@ -29,7 +30,7 @@ export default class ComplaintForm extends Component <{navigation :object}, {  }
       let test = new ComplaintPattern();
       try{
           let data = await test.getImage;
-          data = { ...data, width: 100, height: 100};
+          data = { ...data, width: 200, height: 200};
 
           this.setState({
               stateTest: data
@@ -68,13 +69,10 @@ export default class ComplaintForm extends Component <{navigation :object}, {  }
         )
   }
 
-
-
-
   renderQuestionary = (item :any) => {
     return(
-        <View key={item.question}>
-            <Text>{item.question}</Text>
+        <View style={styles.questionary} key={item.question}>
+            <Text style={styles.question}>{item.question}</Text>
             <TextInput
                 onChangeText={(text) => item.answer = text}
             />
@@ -84,15 +82,27 @@ export default class ComplaintForm extends Component <{navigation :object}, {  }
 
   render() {
     return (
-        <View>
-            <Button title={'przejdz'} onPress={() => this.props.navigation.navigate('List')}/>
-            { this.state.stateTest !== {uri: ''}  && <Image source={this.state.stateTest}/>}
+        <ScrollView>
+            <Button
+                title={'Przejdz do listy zgłoszeń'}
+                onPress={() => this.props.navigation.navigate('List')}
+            />
+            <View style={styles.image}>
+                { this.state.stateTest !== {uri: ''}  && <Image source={this.state.stateTest}/>}
+            </View>
             <FlatList
                 data={this.state.form}
+                contentContainerStyle={styles.contentContainer}
                 renderItem={({item}) => this.renderQuestionary(item)}
             />
-            <Button title={'dupa'} onPress={() => this.onSubmitPress()}/>
-        </View>
+            <View style={styles.button}>
+                <Button
+                    title={'Wyślij'}
+                    onPress={() => this.onSubmitPress()}
+                    color='orange'
+                />
+            </View>
+        </ScrollView>
     );
   }
 }
