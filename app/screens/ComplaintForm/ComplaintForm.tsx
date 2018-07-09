@@ -52,21 +52,19 @@ export default class ComplaintForm extends Component <{navigation :object}, {  }
   }
 
   onSubmitPress = async () => {
-        const key :string = this.generateKey();
-        const data :{} = {...this.state.stateTest, form: this.state.form, key};
-        saveData(data);
-        let url :string = await uploadFile(data.uri);
-        url = url.slice(1, -1);
-        sendData({...data, source: url});
-        return(
-            Alert.alert(
-                'Pomyślnie zapisano zgłoszenie',
-                '',
-                [
-                    {text: 'OK', onPress: () => this.props.navigation.navigate('List', data)}
-                ]
-            )
-        )
+      const key :string = this.generateKey();
+      const data :{} = {...this.state.stateTest, form: this.state.form, key};
+      saveData(data);
+      Alert.alert(
+          'Pomyślnie zapisano zgłoszenie',
+          '',
+          [
+              {text: 'OK', onPress: () => this.props.navigation.navigate('List', data)}
+          ]
+      )
+      let url :string = await uploadFile(data.uri);
+      url = url.slice(1, -1);
+      sendData({...data, source: url});
   }
 
   renderQuestionary = (item :any) => {
@@ -84,8 +82,8 @@ export default class ComplaintForm extends Component <{navigation :object}, {  }
     return (
         <ScrollView>
             <Button
-                title={'Przejdz do listy zgłoszeń'}
-                onPress={() => this.props.navigation.navigate('List')}
+                title={'Wróć do menu'}
+                onPress={() => this.props.navigation.navigate('Menu')}
             />
             <View style={styles.image}>
                 { this.state.stateTest !== {uri: ''}  && <Image source={this.state.stateTest}/>}

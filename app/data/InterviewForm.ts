@@ -1,7 +1,8 @@
 const questions = [
-    'Czy trzeba z Toba chodzić?',
-    'Czy to Twój kasztan?',
-    'Let me get you through couple hypotetical: '
+    'Jakie niezgodności zaobserwowałeś?',
+    'Na jakim etapie one nastąpiły?',
+    'Czy proces produkcji przebiegł zgodnie z wytycznymi?',
+    'Czy urządzenie jest niezdatne do użytku?'
 ]
 
 export default questions;
