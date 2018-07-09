@@ -5,6 +5,7 @@ import ComplaintPattern from 'Classes/ComplaintPattern';
 import questions from 'Data/InterviewForm';
 import saveData from 'Services/SaveData';
 import sendData from "../../services/sendData";
+import uploadFile from "../../services/UploadImage";
 
 export default class ComplaintForm extends Component <{navigation :object}, {  }> {
     state = {
@@ -49,12 +50,13 @@ export default class ComplaintForm extends Component <{navigation :object}, {  }
       return `${year}-${month}-${day}-${hour}-${minutes}-${seconds}`
   }
 
-  onSubmitPress = () => {
+  onSubmitPress = async () => {
         const key :string = this.generateKey();
-        const data :{} = {...this.state.stateTest, ...this.state.form, key};
+        const data :{} = {...this.state.stateTest, form: this.state.form, key};
         saveData(data);
-        //console.log(data);
-        sendData(data);
+        let url :string = await uploadFile(data.uri);
+        url = url.slice(1, -1);
+        sendData({...data, source: url});
         return(
             Alert.alert(
                 'Pomyślnie zapisano zgłoszenie',
